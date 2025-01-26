@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request
 import requests
 import time
 import json
+import os
 
 app = Flask(__name__)
 
@@ -10,7 +11,7 @@ def index():
     return render_template('index.html')
 
 def make_model_request(model, content, system_prompt):
-    API_KEY = 'fw_3ZRA4aj6HKSXuM6R9RkWhixK'
+    API_KEY = os.getenv("DOBBY_API_KEY")
     response = requests.post(
         'https://api.fireworks.ai/inference/v1/chat/completions',
         headers={
